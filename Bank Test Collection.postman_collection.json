@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "4f458476-5981-48e4-b53c-d277dce15c56",
+		"name": "Bank Test Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40532944"
+	},
+	"item": [
+		{
+			"name": "Bank Core Service",
+			"item": [
+				{
+					"name": "GetUserByEmail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/users/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserByAccountNo",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GetBalanceByAccountNo",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "DeductBalance",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"john\",\r\n    \"email\":\"johnk@gmail.com\",\r\n    \"password\":\"123456787\",\r\n    \"roles\":\"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/accounts/deductBalance/{accountNumber}/{amount}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"accounts",
+								"deductBalance",
+								"{accountNumber}",
+								"{amount}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddBalance",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/accounts/addBalance/{accountNumber}/{amount}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"accounts",
+								"addBalance",
+								"{accountNumber}",
+								"{amount}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AccountReg",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/accounts/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"accounts",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction Service",
+			"item": [
+				{
+					"name": "WithdrawMoney",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "DepositMoney",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Error Message</th>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>{{response}}</td>\r",
+									"    </tr>\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return {response: pm.response.text()}\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJzdWIiOiJQYXJpIiwiaWF0IjoxNzQxMDAyNTE1LCJleHAiOjE3NDEwMDYxMTV9.eh2ZyaTspnSdxXkZ3OUkCeyJBCoZSCSnW5RjwZ7pIb4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/transactions/addmoney",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"transactions",
+								"addmoney"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/transactions/transfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"transactions",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TransactionHistory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJzdWIiOiJTcnVzaHRpIiwiaWF0IjoxNzQxMjA5NzMxLCJleHAiOjE3NDEyMTMzMzF9.HDHQEVd_KsRQauqfhTSI7Ad34ydbpsyfc8K8JPdEBQY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/transactions/{accountNumber}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"transactions",
+								"{accountNumber}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Service",
+			"item": [
+				{
+					"name": "AccountDTOByUserId",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "UserById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/users/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"users",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/users/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"users",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Anju\",\r\n  \"mobileNumber\": \"6263806533\",\r\n  \"email\": \"anju@xyz.com\",\r\n  \"age\": 24\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1234/users/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1234",
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 06:10:05 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 89,\n    \"name\": \"Anju\",\n    \"mobileNumber\": \"6263806533\",\n    \"email\": \"anju@xyz.com\",\n    \"age\": 24,\n    \"accountNumber\": \"547549061825\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DelUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/users/delete/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"users",
+								"delete",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Welcome",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Pari\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/auth/welcome",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"auth",
+								"welcome"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AuthGetToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Anushka\",\r\n    \"password\":\"anushka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/auth/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NewUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Srushti\",\r\n    \"email\":\"srushti@gmail.com\",\r\n    \"password\":\"srushti\",\r\n    \"roles\":\"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/auth/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"auth",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/auth/getroles/{username}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"auth",
+								"getroles",
+								"{username}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
