@@ -63,7 +63,7 @@ The Internet Banking System follows a microservices-based architecture where eac
        +---------------------------------------------------------+
                                       |
                           +----------------------------+
-                          |   Database (PostgreSQL)    |
+                          |   Database (MySQL)    |
                           +----------------------------+
 ```
 
